@@ -1,7 +1,10 @@
 package com.aytachuseynli.facedetectorapp.ui.camera
 
+import android.content.pm.PackageManager
 import android.os.CountDownTimer
 import android.util.Log
+import android.widget.Toast
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.annotation.OptIn
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ExperimentalGetImage
@@ -27,6 +30,7 @@ import androidx.lifecycle.lifecycleScope
 import com.aytachuseynli.facedetectorapp.databinding.FragmentCameraBinding
 import com.aytachuseynli.facedetectorapp.utils.TestInstruction
 import kotlinx.coroutines.launch
+import java.util.jar.Manifest
 
 
 @AndroidEntryPoint
@@ -90,6 +94,21 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(FragmentCameraBinding
         }
         (countDownTimer as CountDownTimer).start()
     }
+
+
+
+
+    private val requestPermissionLauncher =
+        registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
+            if (isGranted) {
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Camera permission denied",
+                    Toast.LENGTH_LONG
+                ).show()
+            }
+        }
 
     override fun onCreateFinish() {
 
