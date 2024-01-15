@@ -9,7 +9,6 @@ import java.util.concurrent.ExecutorService
 @AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
-    private lateinit var  cameraExecutor: ExecutorService
     private lateinit var binding: ActivityMainBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
