@@ -36,7 +36,7 @@ class CameraViewModel @Inject constructor(val repo: AppRepository) : ViewModel()
         when (currentTest.value.test) {
             TestInstruction.LEFT -> {
                 if (head.toInt() > 20) {
-                    Log.e("FaceDetection", "Kafa sola döndü")
+                    Log.e("FaceDetection", "Head turned left")
                     result.left = true
                     _currentTest.value = CurrentTestState("Head to Right", TestInstruction.RIGHT)
                 }
@@ -44,7 +44,7 @@ class CameraViewModel @Inject constructor(val repo: AppRepository) : ViewModel()
 
             TestInstruction.RIGHT -> {
                 if (head.toInt() < -20) {
-                    Log.e("FaceDetection", "Kafa saga döndü")
+                    Log.e("FaceDetection", "Head turned right")
                     result.right = true
                     _currentTest.value = CurrentTestState("Smile", TestInstruction.SMILE)
                 }
@@ -53,14 +53,14 @@ class CameraViewModel @Inject constructor(val repo: AppRepository) : ViewModel()
             TestInstruction.SMILE -> {
                 if (smilingProbability!! > 0.7) {
                     result.smile = true
-                    Log.e("FaceDetection", "Gülüyor")
+                    Log.e("FaceDetection", "Smiling")
                     _currentTest.value = CurrentTestState("Neutral", TestInstruction.NEUTRAL)
                 }
             }
 
             TestInstruction.NEUTRAL -> {
                 if (smilingProbability!! < 0.7) {
-                    Log.e("FaceDetection", "Gülmüyor")
+                    Log.e("FaceDetection", "Neutral")
                     result.neutral = true
                     insertResult()
                     _currentTest.value = CurrentTestState("Head to Left", TestInstruction.LEFT)

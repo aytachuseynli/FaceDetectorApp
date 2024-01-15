@@ -110,6 +110,8 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(FragmentCameraBinding
             }
         }
 
+
+
     override fun onCreateFinish() {
 
         startCamera(binding.cameraPreview)

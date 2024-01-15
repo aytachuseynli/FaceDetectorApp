@@ -7,6 +7,8 @@ buildscript {
         classpath("com.google.gms:google-services:4.4.0")
         classpath("com.android.tools.build:gradle:4.1.3")
         classpath("androidx.navigation:navigation-safe-args-gradle-plugin:2.7.6")
+        classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:1.9.20")
+
     }
 }
 // Top-level build file where you can add configuration options common to all sub-projects/modules.

@@ -6,11 +6,12 @@ import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
 import com.aytachuseynli.facedetectorapp.data.model.Result
+import kotlinx.coroutines.flow.Flow
 
 @Dao
 interface TestResultDao {
-    @Insert(onConflict = OnConflictStrategy.IGNORE)
-    suspend fun insertResult(result:Result)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+     suspend fun insertResult(result:Result)
 
     @Query("SELECT*FROM result")
     fun getResultData(): LiveData<List<Result>>
