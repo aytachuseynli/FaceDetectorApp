@@ -97,10 +97,11 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(FragmentCameraBinding
 
 
 
-
     private val requestPermissionLauncher =
         registerForActivityResult(ActivityResultContracts.RequestPermission()) { isGranted: Boolean ->
             if (isGranted) {
+                // Permission granted, you can start the camera
+                startCamera(binding.cameraPreview)
             } else {
                 Toast.makeText(
                     requireContext(),
@@ -110,11 +111,30 @@ class CameraFragment : BaseFragment<FragmentCameraBinding>(FragmentCameraBinding
             }
         }
 
+    private fun checkCameraPermission() {
+        when {
+            ContextCompat.checkSelfPermission(
+                requireContext(),
+                android.Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                startCamera(binding.cameraPreview)
+            }
+            shouldShowRequestPermissionRationale(android.Manifest.permission.CAMERA) -> {
 
+                showPermissionExplanationDialog()
+            }
+            else -> {
+                requestPermissionLauncher.launch(android.Manifest.permission.CAMERA)
+            }
+        }
+    }
+
+    private fun showPermissionExplanationDialog() {
+
+    }
 
     override fun onCreateFinish() {
-
-        startCamera(binding.cameraPreview)
+        checkCameraPermission()
     }
 
     private fun startCamera(viewFinder: PreviewView) {

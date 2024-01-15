@@ -3,7 +3,7 @@ package com.aytachuseynli.facedetectorapp.ui.camera
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.aytachuseynli.facedetectorapp.data.model.Result
+import com.aytachuseynli.facedetectorapp.data.model.FaceDetectionResult
 import com.aytachuseynli.facedetectorapp.data.repo.AppRepository
 import com.aytachuseynli.facedetectorapp.utils.TestInstruction
 import com.google.mlkit.vision.face.Face
@@ -24,8 +24,10 @@ class CameraViewModel @Inject constructor(val repo: AppRepository) : ViewModel()
     }
 
     companion object {
-        var result = Result(0)
+        var result = FaceDetectionResult(0)
     }
+
+
 
     fun setTestResult(face: Face) {
 
@@ -64,7 +66,7 @@ class CameraViewModel @Inject constructor(val repo: AppRepository) : ViewModel()
                     result.neutral = true
                     insertResult()
                     _currentTest.value = CurrentTestState("Head to Left", TestInstruction.LEFT)
-                    result= Result(0)
+                    result= FaceDetectionResult(0)
                 }
 
             }
@@ -74,9 +76,25 @@ class CameraViewModel @Inject constructor(val repo: AppRepository) : ViewModel()
     }
 
 
+
     fun insertResult() {
         viewModelScope.launch {
             repo.insertResult(result)
         }
     }
+//    fun insertResult() {
+//        val currentTimeMillis = System.currentTimeMillis()
+//
+//        val resultWithTime = Result(
+//            left = result.left,
+//            right = result.right,
+//            smile = result.smile,
+//            neutral = result.neutral,
+//            testFinishTime = currentTimeMillis
+//        )
+//
+//        viewModelScope.launch {
+//            repo.insertResult(resultWithTime)
+//        }
+//    }
 }

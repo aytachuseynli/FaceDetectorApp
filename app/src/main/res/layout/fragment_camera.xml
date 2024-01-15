@@ -50,10 +50,7 @@
     </LinearLayout>
 
 
-    <FrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="parent">
+
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/buttonStopCamera"
@@ -63,18 +60,8 @@
             android:layout_margin="20dp"
             android:clickable="true"
             android:src="@drawable/ic_stop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
             android:contentDescription="@string/stop_camera" />
-
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/buttonStartCamera"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end|bottom"
-            android:layout_margin="20dp"
-            android:clickable="true"
-            android:src="@drawable/ic_start"
-            android:visibility="invisible"
-            android:contentDescription="@string/start_camera" />
-    </FrameLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
