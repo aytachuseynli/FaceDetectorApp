@@ -77,24 +77,26 @@ class CameraViewModel @Inject constructor(val repo: AppRepository) : ViewModel()
 
 
 
-    fun insertResult() {
-        viewModelScope.launch {
-            repo.insertResult(result)
-        }
-    }
 //    fun insertResult() {
-//        val currentTimeMillis = System.currentTimeMillis()
-//
-//        val resultWithTime = Result(
-//            left = result.left,
-//            right = result.right,
-//            smile = result.smile,
-//            neutral = result.neutral,
-//            testFinishTime = currentTimeMillis
-//        )
-//
 //        viewModelScope.launch {
-//            repo.insertResult(resultWithTime)
+//            repo.insertResult(result)
 //        }
 //    }
+
+
+    fun insertResult() {
+        val currentTimeMillis = System.currentTimeMillis()
+
+        val resultWithTime = FaceDetectionResult(
+            left = result.left,
+            right = result.right,
+            smile = result.smile,
+            neutral = result.neutral,
+            testFinishTime = currentTimeMillis
+        )
+
+        viewModelScope.launch {
+            repo.insertResult(resultWithTime)
+        }
+    }
 }
