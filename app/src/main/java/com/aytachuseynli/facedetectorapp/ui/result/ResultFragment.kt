@@ -8,7 +8,6 @@ import com.aytachuseynli.facedetectorapp.utils.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-
 class ResultFragment : BaseFragment<FragmentResultBinding>(FragmentResultBinding::inflate) {
     private val viewModel by viewModels<ResultViewModel>()
     private val adapter = TestResultAdapter()
@@ -19,11 +18,9 @@ class ResultFragment : BaseFragment<FragmentResultBinding>(FragmentResultBinding
 
         }
     }
-
     override fun onCreateFinish() {
 
     }
-
 
     override fun setupListeners() {
         binding.fab.setOnClickListener {
@@ -32,7 +29,5 @@ class ResultFragment : BaseFragment<FragmentResultBinding>(FragmentResultBinding
         }
         binding.recycleView.adapter =  adapter
     }
-
-
 
 }

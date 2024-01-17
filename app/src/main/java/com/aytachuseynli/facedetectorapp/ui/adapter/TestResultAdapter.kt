@@ -23,7 +23,6 @@ class TestResultAdapter: ListAdapter<FaceDetectionResult, TestResultAdapter.View
         fun bind(item: FaceDetectionResult) {
             with(binding) {
 
-
                 val currentTimeMillis = System.currentTimeMillis()
 
                 val date = Date(currentTimeMillis)
