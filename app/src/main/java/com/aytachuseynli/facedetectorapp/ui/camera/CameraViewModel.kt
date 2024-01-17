@@ -16,17 +16,16 @@ import javax.inject.Inject
 @HiltViewModel
 class CameraViewModel @Inject constructor(val repo: AppRepository) : ViewModel() {
 
-    private val _currentTest = MutableStateFlow(CurrentTestState("Head to Left", TestInstruction.LEFT))
+    private val _currentTest =
+        MutableStateFlow(CurrentTestState("Head to Left", TestInstruction.LEFT))
     val currentTest = _currentTest.asStateFlow()
 
     fun updateCurrentTest(currentTestState: CurrentTestState) {
         _currentTest.value = currentTestState
     }
 
-    companion object {
-        var result = FaceDetectionResult(0)
-    }
 
+    var result = FaceDetectionResult(0)
 
 
     fun setTestResult(face: Face) {
@@ -64,9 +63,9 @@ class CameraViewModel @Inject constructor(val repo: AppRepository) : ViewModel()
                 if (smilingProbability!! < 0.7) {
                     Log.e("FaceDetection", "Neutral")
                     result.neutral = true
+                    result.testFinishTime=System.currentTimeMillis()
                     insertResult()
                     _currentTest.value = CurrentTestState("Head to Left", TestInstruction.LEFT)
-                    result= FaceDetectionResult(0)
                 }
 
             }
@@ -76,27 +75,26 @@ class CameraViewModel @Inject constructor(val repo: AppRepository) : ViewModel()
     }
 
 
-
-//    fun insertResult() {
-//        viewModelScope.launch {
-//            repo.insertResult(result)
-//        }
-//    }
-
-
     fun insertResult() {
-        val currentTimeMillis = System.currentTimeMillis()
-
-        val resultWithTime = FaceDetectionResult(
-            left = result.left,
-            right = result.right,
-            smile = result.smile,
-            neutral = result.neutral,
-            testFinishTime = currentTimeMillis
-        )
-
         viewModelScope.launch {
-            repo.insertResult(resultWithTime)
+            repo.insertResult(result)
         }
     }
+
+
+//    fun insertResult() {
+//        val currentTimeMillis = System.currentTimeMillis()
+//
+//        val resultWithTime = FaceDetectionResult(
+//            left = result.left,
+//            right = result.right,
+//            smile = result.smile,
+//            neutral = result.neutral,
+//            testFinishTime = currentTimeMillis
+//        )
+//
+//        viewModelScope.launch {
+//            repo.insertResult(resultWithTime)
+//        }
+//    }
 }

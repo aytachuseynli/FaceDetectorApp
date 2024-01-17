@@ -4,7 +4,6 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.aytachuseynli.facedetectorapp.databinding.FragmentResultBinding
 import com.aytachuseynli.facedetectorapp.ui.adapter.TestResultAdapter
-import com.aytachuseynli.facedetectorapp.ui.camera.CameraViewModel.Companion.result
 import com.aytachuseynli.facedetectorapp.utils.BaseFragment
 import dagger.hilt.android.AndroidEntryPoint
 

@@ -9,7 +9,7 @@ import com.aytachuseynli.facedetectorapp.data.model.FaceDetectionResult
 
 @Dao
 interface TestResultDao {
-    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.IGNORE)
      suspend fun insertResult(result:FaceDetectionResult)
 
     @Query("SELECT*FROM result")

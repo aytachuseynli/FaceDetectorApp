@@ -8,7 +8,7 @@ import androidx.room.PrimaryKey
 data class FaceDetectionResult(
 
     @PrimaryKey(autoGenerate = true)
-    val id:Long?=0,
+    val id:Long,
 
     @ColumnInfo(name = "left")
     var left:Boolean=false,
