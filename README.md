@@ -1,0 +1,2 @@
+## Face Guard App
+ FaceGuard Test is an Android app leveraging ML Kit, CameraX, and ROOM DB to verify user authenticity through facial recognition. Users perform tasks like head rotation and facial expressions in real-time tests. With a clean two-screen interface, the app records past results and initiates live tests with Coroutines, MVVM architecture, and Navigation Components for optimal performance
